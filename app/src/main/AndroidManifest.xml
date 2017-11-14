@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.kuangye.drawseries">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+    
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,10 +12,12 @@
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity" />
         <activity android:name=".SecondActivity" />
-        <activity android:name=".ThirdActivity"></activity>
-        <activity android:name=".ForthActivity">
+        <activity android:name=".ThirdActivity" >
         </activity>
+        <activity android:name=".ForthActivity"></activity>
         <activity android:name=".FiveActivity">
+        </activity>
+        <activity android:name=".DemoActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

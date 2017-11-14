@@ -125,5 +125,9 @@ public class CustomPaintView extends View {
 
         //批量设置flags相当于paint.setAntiAlias(true); paint.setDither(true);
         paint1.setFlags(Paint.ANTI_ALIAS_FLAG | Paint.DITHER_FLAG);
+
+
+
+
     }
 }

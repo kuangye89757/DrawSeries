@@ -9,7 +9,6 @@ import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.ComposeShader;
 import android.graphics.LightingColorFilter;
-import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuffColorFilter;
@@ -35,6 +34,8 @@ public class CustomBitmapView extends View {
     private PorterDuffColorFilter mPorterDuffColorFilter;
     private Xfermode xfermode;
     private Bitmap mBatManBitmap;
+    private Bitmap mBlueBitmap;
+    private Bitmap mAdBitmap;
     private Shader mShader1;
     private Shader mShader2;
     private Shader mShader3;
@@ -74,6 +75,8 @@ public class CustomBitmapView extends View {
 
     private void init() {
         mBatManBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.batman);
+        mBlueBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.refueling_blue_btn);
+        mAdBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_ad_focus);
 
         //LightingColorFilter--模拟简单的光照效果
         redColorFilter = new LightingColorFilter(0x00ffff, 0x000000);
@@ -104,11 +107,14 @@ public class CustomBitmapView extends View {
          tileY：纵向的 TileMode
          */
         //shader1
-        mShader1 = new BitmapShader(mBatManBitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
+        mShader1 = new BitmapShader(mBlueBitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
 
         //shader2
-        mShader2 = new LinearGradient(0, 0, 0, 100, Color.TRANSPARENT,
-                Color.parseColor("#0288E1"), Shader.TileMode.CLAMP);
+//        mShader2 = new LinearGradient(0, 0, 0, 100, Color.TRANSPARENT,
+//                Color.parseColor("#0288E1"), Shader.TileMode.CLAMP);
+
+
+        mShader2 = new BitmapShader(mAdBitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
 
         //PorterDuff.Mode---16种效果
         mShader3 = new ComposeShader(mShader1, mShader2, OVERLAY);

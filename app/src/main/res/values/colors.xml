@@ -4,4 +4,6 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorPurple">#8d3be1</color>
+    <color name="interact_head_border">#cccccc</color>
+    <color name="white">#FFFFFFFF</color>
 </resources>
