@@ -14,7 +14,25 @@ import android.view.View;
 import com.kuangye.drawseries.R;
 
 /**
- * http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2016/0717/4504.html
+ * 下划线View
+ * 
+ * <com.kuangye.drawseries.wiget.UnderlineView
+ *         android:layout_width="match_parent"
+ *         android:layout_height="0dp"
+ *         android:layout_weight="1"
+ *         app:family="sans-serif"
+ *         app:text="High-quality (path)"
+ *         app:type="path" />
+ *         
+ *         
+ * <declare-styleable name="UnderlineView">
+ *         <attr name="type" format="enum">
+ *             <enum name="path" value="0" />
+ *             <enum name="region" value="1" />
+ *         </attr>
+ *         <attr name="family" format="string" />
+ *         <attr name="text" format="string" />
+ *     </declare-styleable>        
  */
 public class UnderlineView extends View {
     private static final float UNDERLINE_CLEAR_GAP = 5.5f;

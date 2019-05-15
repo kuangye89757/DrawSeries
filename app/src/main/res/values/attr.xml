@@ -9,7 +9,4 @@
         <attr name="text" format="string" />
     </declare-styleable>
 
-    <declare-styleable name="CampImageView">
-        <attr name="camp_bg" format="reference"/>
-    </declare-styleable>
 </resources>

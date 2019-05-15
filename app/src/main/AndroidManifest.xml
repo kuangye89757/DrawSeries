@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.kuangye.drawseries">
 
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -9,15 +10,20 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity" />
-        <activity android:name=".SecondActivity" />
-        <activity android:name=".ThirdActivity" >
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".anim.TweenAnimActivity" >
         </activity>
-        <activity android:name=".ForthActivity"></activity>
-        <activity android:name=".FiveActivity">
+        <activity android:name=".anim.PropertyAnimActivity">
+        
         </activity>
-        <activity android:name=".DemoActivity">
+        <activity android:name=".anim.FrameAnimActivity">
+            
+        </activity>
+        <activity android:name=".bitmap.BitmapTestActivity">
+            
+        </activity>
+        <activity android:name=".activity.GraphActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

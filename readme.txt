@@ -1,15 +1,39 @@
-参见:https://mp.weixin.qq.com/s/10QyDARvBI4iHnN9JrqOzg
-自定义绘制知识的四个级别
-    1.Canvas 的 drawXXX() 系列方法及 Paint 最常见的使用
-        Canvas 类下的所有 draw- 打头的方法
-        Paint 类的几个最常用的方法。具体是：
-            Paint.setStyle(Style style) 设置绘制模式
-            Paint.setColor(int color) 设置颜色
-            Paint.setStrokeWidth(float width) 设置线条宽度
-            Paint.setTextSize(float textSize) 设置文字大小
-            Paint.setAntiAlias(boolean aa) 设置抗锯齿开关
+自定义View绘制 （到绘制阶段都是像素px）
+    GraphActivity
+                1.CircularProgressBarView  -- 文字进度条
+                2.PieChartView -- 饼图
+                3.AvatarView -- 各种形状的头像
+                4.DashBoardView -- 刻度仪
+                5.UnderlineView -- 下划线
+=================================================================================
+	基本要素：onDraw(Canvas)、Canvas、Paint、坐标系、尺寸单位
 
-        Path.setFillType(Path.FillType ft) 设置填充方式有四种:
+	dp2px:
+		TypedValue.applyDimension(TypeValue.COMPLEX_UNIT_DIP,150,dp值，Resources.getSystem().getDisplayMetrics());
+
+
+	onSizeChanged(): 在layout之后实际尺寸改变了会调用一次，尺寸不变是不会调用的 
+					 这样每次尺寸变了，path会重置；相比measure不会过多被调用,性能节省
+		
+		@Override
+		protected void onSizeChanged(int w,int h,int oldw,int oldh){
+			super.onSizeChanged(w,h,oldw,oldh);
+
+			path.reset();
+			path.addxx()
+		}	
+
+    
+	//绘制弧形 
+	canvas.drawArc(矩形空间Rect,起始角度，扫过的角度);
+
+	Path.Direction : 绘制方向，与图像的交叉有关，
+         从一个绘制的图形中取一个点作射线 （对相交的区域有不同的计算方式，使得有空心和实心的区分）
+
+         //填充类型策略：EVEN_ODD（偶数)及其反向、WINDING(环绕走廊盘旋)及其反向
+         //跟顺时针还是逆时针有关，使得填充结果不同
+         paint.setFillType(Path.FillType.xx)
+
 
          1.EVEN_ODD即 even-odd rule （奇偶原则）：
              从平面中的点向任意方向射出一条射线，这条射线和图形相交的次数（相交才算，相切不算哦）
@@ -26,13 +50,43 @@
 
          4.INVERSE_WINDING    反转WINDING效果
 
-    2.Paint 的完全攻略
-        Canvas 的方法像素颜色的设置方式
-            drawColor/RGB/ARGB()  直接作为参数传入
-            drawBitmap()          与bitmap参数的像素颜色相同
-            图形和文字 (drawCircle() / drawPath() / drawText() ...)
-                    在paint参数中设置
+    //X轴向Y轴（向下）靠近就是正向
+	Path.Direction.CW：  顺时针方向绘制 （clockwise）
+	Path.Direction.CCW： 逆时针方向绘制 （counterclockwise）
+		
+	//测量path	
+	PathMeasure pm = new PathMeasure(path,是否封口)；
+	pm.getLength(); //测量path的长度，若绘制的圆则为周长 	
 
-    3.Canvas 对绘制的辅助——范围裁切和几何变换
-    4.使用不同的绘制方法来控制绘制顺序
 
+	//文字排印
+	public static class FontMetrics {
+        /**
+         * 能给予文字的顶部最高的位置.
+         */
+        public float   top;
+        /**
+         * 推荐基于基线的顶部
+         */
+        public float   ascent;
+        /**
+         * 推荐基于基线的底部
+         */
+        public float   descent;
+        /**
+         * 能给予文字的底部最低的位置.
+         */
+        public float   bottom;
+        /**
+         * 基线（baseline）
+         */
+        public float   leading;
+    }
+
+=================================================================================    
+    FrameAnimActivity -- 帧动画
+    PropertyAnimActivity -- 属性动画
+    TweenAnimActivity -- 补间动画
+    
+=================================================================================        
+    BitmapTestActivity -- 屏幕分辨率相关
